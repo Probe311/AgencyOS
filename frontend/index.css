@@ -1,0 +1,503 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f7ff; /* primary-50 equivalent */
+  transition: all 500ms;
+}
+
+html.dark body {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  background-color: #f8fafc;
+  font-family: inherit;
+}
+
+.dark .leaflet-container {
+  background-color: #1e293b;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.leaflet-tile-container img {
+  max-width: none !important;
+  image-rendering: auto !important;
+  -ms-interpolation-mode: bicubic !important;
+}
+
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Assurer que les tuiles de carte sont toujours visibles */
+.leaflet-tile-pane {
+  opacity: 1 !important;
+  z-index: 2 !important;
+}
+
+.leaflet-map-pane {
+  z-index: 1;
+}
+
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  cursor: grab;
+}
+
+.leaflet-container:active {
+  cursor: grabbing;
+}
+
+.leaflet-tile-container {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.leaflet-tile {
+  visibility: visible !important;
+  opacity: 1 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Supprimer le quadrillage indésirable */
+.leaflet-tile-layer-no-grid .leaflet-tile {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  image-rendering: auto !important;
+  -ms-interpolation-mode: bicubic !important;
+}
+
+.leaflet-tile-layer-no-grid .leaflet-tile img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  image-rendering: auto !important;
+  -ms-interpolation-mode: bicubic !important;
+}
+
+.leaflet-tile-pane {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Supprimer les lignes de grille entre les tuiles */
+.leaflet-tile-container::before,
+.leaflet-tile-container::after {
+  display: none !important;
+}
+
+.leaflet-tile::before,
+.leaflet-tile::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Forcer la suppression de tout quadrillage visible */
+.leaflet-tile-container {
+  border: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.leaflet-tile {
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  display: block !important;
+}
+
+/* Supprimer les bordures et espacements qui créent un effet de grille */
+.leaflet-layer {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Masquer complètement les tuiles d'erreur et de chargement */
+.leaflet-tile.leaflet-tile-loaded {
+  border: none !important;
+}
+
+.leaflet-tile.leaflet-zoom-animated {
+  border: none !important;
+}
+
+/* Supprimer tout pattern ou background qui pourrait créer un quadrillage sur les panes */
+.leaflet-tile-pane {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.leaflet-overlay-pane {
+  background: transparent !important;
+}
+
+/* Assurer qu'il n'y a pas de bordure entre les tuiles qui créent un quadrillage */
+.leaflet-tile-container .leaflet-tile {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+/* Assurer que le zoom à la molette fonctionne */
+.leaflet-container {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Custom scrollbar pour les colonnes */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Scrollbar horizontale pour les kanbans */
+.kanban-horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.kanban-horizontal-scroll::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 4px;
+}
+
+.kanban-horizontal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
+}
+
+.kanban-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+.dark .kanban-horizontal-scroll::-webkit-scrollbar-track {
+  background: rgba(51, 65, 85, 0.2);
+}
+
+.dark .kanban-horizontal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.5);
+}
+
+.dark .kanban-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 0.7);
+}
+
+/* ============================================
+   ACCESSIBILITÉ WCAG 2.1
+   ============================================ */
+
+/* Screen reader only - contenu visible uniquement pour les lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible pour la navigation clavier */
+.keyboard-navigation *:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.keyboard-navigation button:focus,
+.keyboard-navigation a:focus,
+.keyboard-navigation input:focus,
+.keyboard-navigation textarea:focus,
+.keyboard-navigation select:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Masquer le focus pour la souris */
+body:not(.keyboard-navigation-active) *:focus {
+  outline: none;
+}
+
+/* Contraste élevé */
+.high-contrast {
+  --contrast-bg: #ffffff;
+  --contrast-text: #000000;
+  --contrast-border: #000000;
+}
+
+.high-contrast.dark {
+  --contrast-bg: #000000;
+  --contrast-text: #ffffff;
+  --contrast-border: #ffffff;
+}
+
+.high-contrast * {
+  background-color: var(--contrast-bg) !important;
+  color: var(--contrast-text) !important;
+  border-color: var(--contrast-border) !important;
+}
+
+.high-contrast button,
+.high-contrast a {
+  border: 2px solid var(--contrast-border) !important;
+}
+
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  border: 2px solid var(--contrast-border) !important;
+  background-color: var(--contrast-bg) !important;
+  color: var(--contrast-text) !important;
+}
+
+/* Mouvement réduit */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.reduced-motion .animate-spin {
+  animation: none !important;
+}
+
+/* Tailles de police */
+.font-normal {
+  font-size: 1rem;
+}
+
+.font-large {
+  font-size: 1.125rem;
+}
+
+.font-large * {
+  font-size: 1.125rem;
+}
+
+.font-extra-large {
+  font-size: 1.25rem;
+}
+
+.font-extra-large * {
+  font-size: 1.25rem;
+}
+
+/* Amélioration du contraste pour les liens */
+a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Amélioration des formulaires */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  min-height: 44px; /* Taille minimale pour les zones tactiles */
+}
+
+/* Labels obligatoires */
+label[required]::after {
+  content: " *";
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* États de validation */
+input:invalid,
+textarea:invalid,
+select:invalid {
+  border-color: #ef4444;
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+  border-color: #10b981;
+}
+
+/* Skip link pour navigation clavier */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Amélioration des boutons */
+button:disabled,
+a:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Amélioration des images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[alt=""] {
+  border: 2px dashed #cbd5e1;
+}
+
+/* Amélioration des tableaux */
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Amélioration des listes */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Amélioration des modals */
+[role="dialog"] {
+  position: fixed;
+  z-index: 1000;
+}
+
+[role="dialog"] [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Amélioration des tooltips */
+[role="tooltip"] {
+  position: absolute;
+  z-index: 1000;
+  background: #1e293b;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+/* Amélioration des alertes */
+[role="alert"],
+[role="status"] {
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+[role="alert"] {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+[role="status"] {
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  color: #1e40af;
+}
+
+/* Amélioration des landmarks ARIA */
+[role="banner"],
+[role="navigation"],
+[role="main"],
+[role="complementary"],
+[role="contentinfo"] {
+  outline: 1px dashed transparent;
+}
+
+.keyboard-navigation [role="banner"]:focus,
+.keyboard-navigation [role="navigation"]:focus,
+.keyboard-navigation [role="main"]:focus,
+.keyboard-navigation [role="complementary"]:focus,
+.keyboard-navigation [role="contentinfo"]:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}

@@ -1,0 +1,16 @@
+# robots.txt pour AgencyOS
+
+User-agent: *
+Allow: /
+
+# Désactiver l'indexation des fichiers de configuration
+Disallow: /doc/
+Disallow: /*.json$
+Disallow: /*.md$
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /node_modules/
+
+# Sitemap (à ajouter quand disponible)
+# Sitemap: https://votre-domaine.com/sitemap.xml
+

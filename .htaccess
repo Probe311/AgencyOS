@@ -1,0 +1,76 @@
+# .htaccess pour AgencyOS - Application React SPA
+
+# Activer le module rewrite
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Rediriger HTTP vers HTTPS (optionnel, décommenter si nécessaire)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Ne pas rediriger les fichiers existants (images, CSS, JS, etc.)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Rediriger toutes les requêtes vers index.html pour le routing côté client
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# Compression GZIP pour améliorer les performances
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE text/javascript application/javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Cache des assets statiques
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS et JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  
+  # Fonts
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  
+  # HTML (pas de cache pour permettre les mises à jour)
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# En-têtes de sécurité
+<IfModule mod_headers.c>
+  # Protection XSS
+  Header set X-XSS-Protection "1; mode=block"
+  
+  # Empêcher le MIME sniffing
+  Header set X-Content-Type-Options "nosniff"
+  
+  # Protection contre le clickjacking
+  Header set X-Frame-Options "SAMEORIGIN"
+  
+  # Politique de référent
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Désactiver l'affichage du répertoire
+Options -Indexes
+
+# Page d'erreur personnalisée (optionnel)
+# ErrorDocument 404 /index.html
+# ErrorDocument 500 /index.html
+
