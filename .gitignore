@@ -11,6 +11,17 @@ lerna-debug.log*
 .env
 .env.*
 
+# Package manager tokens
+.npmrc
+.npmrc.*
+
+# Keys / certs (jamais à committer)
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
 node_modules
 dist
 dist-ssr
