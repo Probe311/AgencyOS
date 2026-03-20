@@ -483,7 +483,7 @@ async function enrichWithAI(lead, sireneData) {
     // Vérifier si une clé API OpenRouter est disponible
     const openRouterApiKey = process.env.OPENROUTER_API_KEY || 
                              process.env.VITE_OPENROUTER_API_KEY ||
-                             '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';
+                             'xxx';
     
     if (!openRouterApiKey) {
       console.log(`  → Clé API OpenRouter non trouvée, skip de l'enrichissement IA`);
